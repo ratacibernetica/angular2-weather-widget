@@ -14,17 +14,19 @@ export class WeatherService {
     
     constructor(private jsonp: Jsonp) {}
 
-    getCurrentLocation(): [number, number] {
+    getCurrentLocation(): Observable<any> {
         if(navigator.geolocation){
-            navigator.geolocation.getCurrentPosition( pos => {
-                console.log("Position: ", pos.coords.latitude,',', pos.coords.longitude);
-                return [pos.coords.latitude, pos.coords.longitude];
-            }, err => {
-                console.error("unable to get current position -", err);
-            })
+            return Observable.create( observer => {
+                navigator.geolocation.getCurrentPosition(
+                    pos => {
+                        observer.next(pos);
+                    },
+                    err => {
+                        observer.error(err);
+                    });
+            });
         }else{
-            console.error("geolocation is not available");
-            return [0,0]
+            return Observable.throw("geolocation is not available");
         }
     }
 
