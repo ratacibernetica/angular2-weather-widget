@@ -1,5 +1,7 @@
 import { Component } from "@angular/core";
 import { WeatherService } from '../service/weather.service';
+import { Weather } from '../model/weather';
+
 @Component({
     moduleId: module.id,
     selector: 'weather-widget',
@@ -10,6 +12,7 @@ import { WeatherService } from '../service/weather.service';
 
 export class WeatherComponent {
     pos: Position;
+    weatherData = new Weather(null, null, null, null, null);
 
     constructor(private service: WeatherService) {
 
