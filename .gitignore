@@ -2,3 +2,6 @@ node_modules
 .vscode
 *.js.map
 main.js
+*.log
+*.*.js
+constants.js
