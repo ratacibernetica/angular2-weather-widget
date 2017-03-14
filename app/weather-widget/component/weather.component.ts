@@ -14,11 +14,7 @@ export class WeatherComponent implements OnInit {
     pos: Position;
     weatherData = new Weather(null, null, null, null, null);
 
-    constructor(private service: WeatherService) {
-
-        
-
-    }
+    constructor(private service: WeatherService) {}
 
     ngOnInit() {
         this.getCurrentLocation();
@@ -31,7 +27,7 @@ export class WeatherComponent implements OnInit {
                 this.getCurrentWeather()
             },
             err =>
-                console.error(err)
+                console.error(err) 
             );
     }
 
